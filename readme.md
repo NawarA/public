@@ -12,10 +12,10 @@ Adding a paper to a virtual poster takes 3 steps:
 3. (Optional) Customize the paper using a `_c` parameter
    - `//bytez-staging.web.app/read/{publisher}/{posterId}?_c={config}`
 
-#### By default (without customization) papers look like:
+### By default (without customization) papers look like:
 ![image.png](<https://raw.githubusercontent.com/NawarA/public/main/localhost_3000_read_arxiv_2005.14165%20(3).png>)
 
-#### Papers can be customized. For example, below, we added a logo, disabled notes, and have decided to show code, similar papers, and references.
+### Papers can be customized. For example, below, we added a logo, disabled notes, and have decided to show code, similar papers, and references.
 ![image.png](https://github.com/NawarA/public/blob/main/Screenshot%202022-09-27%20105234.png?raw=true)
 
 Let's discuss how to customize papers.
@@ -310,12 +310,12 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
 
   // for better styling on the mlsys page, wrap the iframe with a styled div
   // like this => <div class="container"><iframe></div>
-  const containerDiv = document.createElement("div");
-  containerDiv.className = "container";
-  containerDiv.appendChild(iframe);
+  const div = document.createElement("div");
+  div.className = "container";
+  div.appendChild(iframe);
 
   // add the container div (with its child iframe) to the page
-  document.body.appendChild(containerDiv);
+  document.body.appendChild(div);
 }
 /*
 As a demo, lets load posterId=2026 (torch.fx: Practical Program Capture and Transformation for Deep Learning in Python)
