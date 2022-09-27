@@ -1,6 +1,6 @@
 # API reference
 
-This readme.md shares how to [install](#install) a paper onto a poster page and how to customize the paper experience, including how to configure the [paper](#paper), [notes](#notes), and [related content](#related-content) modules.
+This readme.md shares how to [install](#install) a paper onto a poster page and how to customize the paper experience, including how to [disable](#insdisableins) modules and select [related content](#insrelatedins).
 
 ## Install
 
@@ -194,13 +194,13 @@ Users have access to official and community created videos that summarize/discus
 
 #### `"blogs"`
 
-Users have 1-click access to public dicussions/blog posts written about the research paper.
+Users have 1-click access to public discussions/blog posts written about the research paper.
 
 ###### src: openreview, towardsdatascience, tensorflow forums, pytorch forums, fast.ai forums, redit forums, stack exchange/stack overflow forums, medium, distil.pub, github
 
 #### `"tweets"`
 
-Users can see Twitter conversional threads discussing the paper
+Users can see Twitter conversational threads discussing the paper
 
 ###### src: twitter
 
@@ -216,6 +216,16 @@ Users can see Twitter conversional threads discussing the paper
 | related   | Choose content displayed in the related section | everything displayed | ['references','conference', 'code', 'similar', 'citations','datasets','videos','blogs','tweets'] |
 
 # Snippets
+
+## Paper only
+
+```js
+const json = JSON.stringify({
+  v: 1,
+  disable: ["notes", "related"]
+});
+const config = btoa(json);
+```
 
 ## Paper without notes, plus select content
 
