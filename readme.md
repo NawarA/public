@@ -3,15 +3,16 @@
 This readme.md shares how to [install](#install) a paper onto a poster page and how to customize the paper experience, including how to [disable](#insdisableins) modules and select [related content](#insrelatedins).
 
 ## TOC
-1) [Install](#install)
-2) [Customize](#customizing)
+
+1. [Install](#install)
+2. [Customize](#customizing)
    - [Config schema](#config-options)
-      - [version](#insversionins)
-      - [logo](#inslogoins)
-      - [disable modules](#insdisableins)
-      - [select related content](#insrelatedins)
+     - [version](#insversionins)
+     - [logo](#inslogoins)
+     - [disable modules](#insdisableins)
+     - [select related content](#insrelatedins)
    - [Code Snippets / Recipes](#snippets)
-3) [Example code](#example)
+3. [Example code](#example)
 
 ## Install
 
@@ -33,13 +34,9 @@ Adding a paper to a virtual poster takes 3 steps:
 
 Let's discuss how to customize papers.
 
-Checkout [examples](#example) below for code snippets.
-
 ## Customizing
 
-To configure and customize a paper, use the `_c` parameter. The `_c` expects base64 encoded JSON, with the following options:
-
-### Config options
+To customize/configure a paper, use the `_c` parameter. The `_c` param expects base64 encoded JSON with the following optional properties:
 
 ```js
 {
@@ -83,9 +80,13 @@ const config = btoa(json);
 // ready to pass to the _c param
 ```
 
-Set `_c` param in the iframe src, equal to the base64 encoded JSON string
+Set `_c` param in the iframe src, equal to the base64 encoded JSON string.
 
-## Here's what each parameter does
+```js
+iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${config}`;
+```
+
+## Here's what each config parameter does:
 
 ### <ins>Version</ins>
 
@@ -195,13 +196,13 @@ Users have 1-click access to papers that cite this research paper.
 
 #### `"datasets"`
 
-The datasets being used are displayed to users. Users have 1-click access to datasets.
+The datasets used in the paper are displayed to users. Users have 1-click access to datasets.
 
 ###### src: paperswithcode; huggingface may be added
 
 #### `"videos"`
 
-Users have access to official and community created videos that summarize/discuss the paper.
+Users have access to author and community created videos that summarize/discuss the paper.
 
 ###### src: slideslive, youtube
 
