@@ -2,6 +2,17 @@
 
 This readme.md shares how to [install](#install) a paper onto a poster page and how to customize the paper experience, including how to [disable](#insdisableins) modules and select [related content](#insrelatedins).
 
+## TOC
+1) [Install](#install)
+2) [Customize](#customizing)
+   - [Config schema](#config-options)
+      - [version](#insversionins)
+      - [logo](#inslogoins)
+      - [disable modules](#insdisableins)
+      - [select related content](#insrelatedins)
+   - [Code Snippets / Recipes](#snippets)
+3) [Example code](#example)
+
 ## Install
 
 Adding a paper to a virtual poster takes 3 steps:
@@ -13,9 +24,11 @@ Adding a paper to a virtual poster takes 3 steps:
    - `//bytez-staging.web.app/read/{publisher}/{posterId}?_c={config}`
 
 ### By default (without customization) papers look like:
+
 ![image.png](<https://raw.githubusercontent.com/NawarA/public/main/localhost_3000_read_arxiv_2005.14165%20(3).png>)
 
 ### Papers can be customized. For example, below, we added a logo, disabled notes, and have decided to show code, similar papers, and references.
+
 ![image.png](https://github.com/NawarA/public/blob/main/Screenshot%202022-09-27%20105234.png?raw=true)
 
 Let's discuss how to customize papers.
@@ -88,7 +101,7 @@ The version param can be ignored. It's here in case we want to update the config
 
 ```js
 {
-  logo: url;
+  logo: "Url";
 }
 ```
 
@@ -227,7 +240,7 @@ const json = JSON.stringify({
 const config = btoa(json);
 ```
 
-## Paper without notes, plus select content
+## Paper, without notes, with filtered content
 
 ```js
 const json = JSON.stringify({
@@ -239,7 +252,7 @@ const json = JSON.stringify({
 const config = btoa(json);
 ```
 
-## Paper with notes, plus select content
+## Paper with notes and content
 
 ```js
 const json = JSON.stringify({
