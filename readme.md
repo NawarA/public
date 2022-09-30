@@ -241,7 +241,7 @@ const json = JSON.stringify({
 const config = btoa(json);
 ```
 
-## Henrick version 1.A ) Paper, without notes, with filtered content
+## Hendrik's version 1.A => Paper, without notes and with references
 
 ```js
 const json = JSON.stringify({
