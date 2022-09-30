@@ -92,7 +92,7 @@ iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${c
 
 ```js
 {
-  v: 1;
+  v: 1
 }
 ```
 
@@ -102,7 +102,7 @@ The version param can be ignored. It's here in case we want to update the config
 
 ```js
 {
-  logo: "Url";
+  logo: "Url"
 }
 ```
 
@@ -112,7 +112,7 @@ Set the logo in the upper left corner. This optional parameter expects a URL to 
 
 ```js
 {
-  disable: ["related", "paper", "notes"];
+  disable: ["related", "paper", "notes"]
 }
 ```
 
@@ -124,7 +124,7 @@ Disable related content
 
 ```js
 {
-  disable: ["related"];
+  disable: ["related"]
 }
 ```
 
@@ -132,7 +132,7 @@ Disable notes
 
 ```js
 {
-  disable: ["notes"];
+  disable: ["notes"]
 }
 ```
 
@@ -140,7 +140,7 @@ Show only the paper
 
 ```js
 {
-  disable: ["related", "notes"];
+  disable: ["related", "notes"]
 }
 ```
 
@@ -158,7 +158,7 @@ Show only the paper
     "videos",
     "blogs",
     "tweets"
-  ];
+  ]
 }
 ```
 
