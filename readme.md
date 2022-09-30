@@ -304,7 +304,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
     // disable notes
     disable: ["notes"],
     // show author presentations, references, and similar papers at this conference
-    related: ["videos", "references", "conference"],
+    related: ["references", "conference"],
     // set the logo
     logo: "https://mlsys.org/static/core/img/MLSys-logo.svg"
   };
