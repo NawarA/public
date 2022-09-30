@@ -241,7 +241,7 @@ const json = JSON.stringify({
 const config = btoa(json);
 ```
 
-## Paper, without notes, with filtered content
+## Henrick version 1.A ) Paper, without notes, with filtered content
 
 ```js
 const json = JSON.stringify({
@@ -342,5 +342,5 @@ As a demo, lets load posterId=2026 (torch.fx: Practical Program Capture and Tran
    1) Navigate to the url => https://mlsys.org/virtual/2022/poster/2026
    2) then run addPaperToPosterPage()
 */
-//addPaperToPosterPage()
+addPaperToPosterPage()
 ```
