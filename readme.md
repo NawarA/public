@@ -229,7 +229,7 @@ Users can see Twitter conversational threads discussing the paper
 | disable   | Disable the `related`, `paper`, `notes` modules | []                   | ["related","paper", "notes"]                                                                     |
 | related   | Choose content displayed in the related section | everything displayed | ['references','conference', 'code', 'similar', 'citations','datasets','videos','blogs','tweets'] |
 
-# Snippets
+# Snippets / recipes
 
 ## Paper only
 
