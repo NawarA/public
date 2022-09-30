@@ -326,6 +326,9 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   // like this => <div class="container"><iframe></div>
   const div = document.createElement("div");
   div.className = "container";
+  const h3 = document.createElement("h3");
+  h3.textContent = 'Paper';
+  div.appendChild(h3)
   div.appendChild(iframe);
 
   // add the container div (with its child iframe) to the page
