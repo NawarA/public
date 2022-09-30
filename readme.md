@@ -252,6 +252,16 @@ const json = JSON.stringify({
 });
 const config = btoa(json);
 ```
+## Hendrik's version 1.B => Paper with notes and references
+
+```js
+const json = JSON.stringify({
+  v: 1,
+  related: ["references", "conference"]
+  // show this paper's references, and show similar papers at the conference
+});
+const config = btoa(json);
+```
 
 ## Paper with notes and content
 
