@@ -335,6 +335,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   const listenForSuccess = ({ data, origin }) => {
     if (origin.includes("bytez")) {
       if (data === "1") {
+        // on success, make the iframe visible
         div.style.removeProperty("display");
       }
       // remove listener
@@ -349,7 +350,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   // for better styling on the mlsys page, wrap the iframe with a styled div
   // like this => <div class="container"><iframe></div>
   const div = document.createElement("div");
-  // make the div invisible first
+  // the div starts invisible
   div.style.visibility = "hidden";
   div.className = "container";
 
