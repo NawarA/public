@@ -92,7 +92,7 @@ iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${c
 
 ```js
 {
-  v: 1
+  v: 1;
 }
 ```
 
@@ -102,7 +102,7 @@ The version param can be ignored. It's here in case we want to update the config
 
 ```js
 {
-  logo: "Url"
+  logo: "Url";
 }
 ```
 
@@ -112,7 +112,7 @@ Set the logo in the upper left corner. This optional parameter expects a URL to 
 
 ```js
 {
-  disable: ["related", "paper", "notes"]
+  disable: ["related", "paper", "notes"];
 }
 ```
 
@@ -124,7 +124,7 @@ Disable related content
 
 ```js
 {
-  disable: ["related"]
+  disable: ["related"];
 }
 ```
 
@@ -132,7 +132,7 @@ Disable notes
 
 ```js
 {
-  disable: ["notes"]
+  disable: ["notes"];
 }
 ```
 
@@ -140,7 +140,7 @@ Show only the paper
 
 ```js
 {
-  disable: ["related", "notes"]
+  disable: ["related", "notes"];
 }
 ```
 
@@ -158,7 +158,7 @@ Show only the paper
     "videos",
     "blogs",
     "tweets"
-  ]
+  ];
 }
 ```
 
@@ -229,7 +229,7 @@ Users can see Twitter conversational threads discussing the paper
 | disable   | Disable the `related`, `paper`, `notes` modules | []                   | ["related","paper", "notes"]                                                                     |
 | related   | Choose content displayed in the related section | everything displayed | ['references','conference', 'code', 'similar', 'citations','datasets','videos','blogs','tweets'] |
 
-# Snippets / recipes
+# Snippets
 
 ## Paper only
 
@@ -241,22 +241,12 @@ const json = JSON.stringify({
 const config = btoa(json);
 ```
 
-## Hendrik's version 1.A => Paper, without notes and with references
+## Paper, without notes, with filtered content
 
 ```js
 const json = JSON.stringify({
   v: 1,
   disable: ["notes"],
-  related: ["references", "conference"]
-  // show this paper's references, and show similar papers at the conference
-});
-const config = btoa(json);
-```
-## Hendrik's version 1.B => Paper with notes and references
-
-```js
-const json = JSON.stringify({
-  v: 1,
   related: ["references", "conference"]
   // show this paper's references, and show similar papers at the conference
 });
@@ -290,9 +280,8 @@ const config = btoa(json);
   This code is meant to be run on:
     https://mlsys.org/virtual/2022/poster/{posterId}
 
-  Running this code adds 3 elements to a poster page:
+  Running this code adds 2 elements to a poster page:
     <div class="container">
-      <h3>Paper</h3>
       <iframe
         style="border: 0px; width: 100%; height: 100vh;"
         src="//bytez-staging.web.app/read/{publisher}/{posterId}?_c={config}"
@@ -315,7 +304,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
     // disable notes
     disable: ["notes"],
     // show author presentations, references, and similar papers at this conference
-    related: ["references", "conference"],
+    related: ["videos", "references", "conference"],
     // set the logo
     logo: "https://mlsys.org/static/core/img/MLSys-logo.svg"
   };
@@ -331,17 +320,30 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   // set the iframe src to the paper
   iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${config}`;
 
+  const listenForSuccess = ({ data, origin }) => {
+    if (origin.includes("bytez")) {
+      if (data === "1") {
+        div.style.display = "unset";
+      }
+      window.removeEventListener("message", listenForSuccess);
+    }
+  };
+  // listen for iframe success
+  window.addEventListener("message", listenForSuccess);
+
   // Step 4) Add the iframe to the poster page
 
   // for better styling on the mlsys page, wrap the iframe with a styled div
   // like this => <div class="container"><iframe></div>
   const div = document.createElement("div");
+  // make the div invisible first
+  div.style.display = "none";
   div.className = "container";
-  
+
   const h3 = document.createElement("h3");
   h3.textContent = "Paper";
-  
-  div.appendChild(h3)
+
+  div.appendChild(h3);
   div.appendChild(iframe);
 
   // add the container div (with its child iframe) to the page
@@ -352,5 +354,4 @@ As a demo, lets load posterId=2026 (torch.fx: Practical Program Capture and Tran
    1) Navigate to the url => https://mlsys.org/virtual/2022/poster/2026
    2) then run addPaperToPosterPage()
 */
-addPaperToPosterPage()
 ```
