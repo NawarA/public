@@ -90,9 +90,9 @@ iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${c
 
 ### <ins>Version</ins>
 
-```js
+```json
 {
-  v: 1;
+  "v": 1
 }
 ```
 
@@ -100,9 +100,9 @@ The version param can be ignored. It's here in case we want to update the config
 
 ### <ins>Logo</ins>
 
-```js
+```json
 {
-  logo: "Url";
+  "logo": "Url"
 }
 ```
 
@@ -110,9 +110,9 @@ Set the logo in the upper left corner. This optional parameter expects a URL to 
 
 ### <ins>Disable</ins>
 
-```js
+```json
 {
-  disable: ["related", "paper", "notes"];
+  "disable": ["related", "paper", "notes"]
 }
 ```
 
@@ -122,33 +122,33 @@ Below are examples:
 
 Disable related content
 
-```js
+```json
 {
-  disable: ["related"];
+  "disable": ["related"]
 }
 ```
 
 Disable notes
 
-```js
+```json
 {
-  disable: ["notes"];
+  "disable": ["notes"]
 }
 ```
 
 Show only the paper
 
-```js
+```json
 {
-  disable: ["related", "notes"];
+  "disable": ["related", "notes"]
 }
 ```
 
 ### <ins>Related</ins>
 
-```js
+```json
 {
-  related: [
+  "related": [
     "references",
     "conference",
     "code",
@@ -158,7 +158,7 @@ Show only the paper
     "videos",
     "blogs",
     "tweets"
-  ];
+  ]
 }
 ```
 
@@ -229,7 +229,7 @@ Users can see Twitter conversational threads discussing the paper
 | disable   | Disable the `related`, `paper`, `notes` modules | []                   | ["related","paper", "notes"]                                                                     |
 | related   | Choose content displayed in the related section | everything displayed | ['references','conference', 'code', 'similar', 'citations','datasets','videos','blogs','tweets'] |
 
-# Snippets
+# Snippets / recipes
 
 ## Paper only
 
@@ -241,12 +241,23 @@ const json = JSON.stringify({
 const config = btoa(json);
 ```
 
-## Paper, without notes, with filtered content
+## Hendrik's version 1.A => Paper, without notes and with references
 
 ```js
 const json = JSON.stringify({
   v: 1,
   disable: ["notes"],
+  related: ["references", "conference"]
+  // show this paper's references, and show similar papers at the conference
+});
+const config = btoa(json);
+```
+
+## Hendrik's version 1.B => Paper with notes and references
+
+```js
+const json = JSON.stringify({
+  v: 1,
   related: ["references", "conference"]
   // show this paper's references, and show similar papers at the conference
 });
@@ -320,11 +331,13 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   // set the iframe src to the paper
   iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${config}`;
 
+  // the iframe is only visible when a paper loads
   const listenForSuccess = ({ data, origin }) => {
     if (origin.includes("bytez")) {
       if (data === "1") {
         div.style.display = "unset";
       }
+      // remove listener
       window.removeEventListener("message", listenForSuccess);
     }
   };
@@ -354,4 +367,5 @@ As a demo, lets load posterId=2026 (torch.fx: Practical Program Capture and Tran
    1) Navigate to the url => https://mlsys.org/virtual/2022/poster/2026
    2) then run addPaperToPosterPage()
 */
+// addPaperToPosterPage();
 ```
