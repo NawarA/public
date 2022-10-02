@@ -38,21 +38,21 @@ Let's discuss how to customize papers.
 
 To customize/configure a paper, use the `_c` parameter. The `_c` param expects base64 encoded JSON with the following optional properties:
 
-```js
+```json
 {
-  v: 1,
-  logo: 'Url',
-  disable: ['related','paper','notes'],
-  related: [
-    'references',
-    'conference',
-    'code',
-    'similar',
-    'citations',
-    'datasets',
-    'videos',
-    'blogs',
-    'tweets'
+  "v": 1,
+  "logo": "Url",
+  "disable": ["related", "paper", "notes"],
+  "related": [
+    "references",
+    "conference",
+    "code",
+    "similar",
+    "citations",
+    "datasets",
+    "videos",
+    "blogs",
+    "tweets"
   ]
 }
 ```
@@ -335,7 +335,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   const listenForSuccess = ({ data, origin }) => {
     if (origin.includes("bytez")) {
       if (data === "1") {
-        div.style.display = "unset";
+        div.style.removeProperty("display");
       }
       // remove listener
       window.removeEventListener("message", listenForSuccess);
@@ -350,7 +350,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   // like this => <div class="container"><iframe></div>
   const div = document.createElement("div");
   // make the div invisible first
-  div.style.display = "none";
+  div.style.visibility = "hidden";
   div.className = "container";
 
   const h3 = document.createElement("h3");
