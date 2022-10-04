@@ -351,7 +351,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   // like this => <div class="container"><iframe></div>
   const div = document.createElement("div");
   // the div starts invisible
-  div.style.visibility = "hidden";
+  div.style.display = "none";
   div.className = "container";
 
   const h3 = document.createElement("h3");
