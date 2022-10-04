@@ -291,8 +291,9 @@ const config = btoa(json);
   This code is meant to be run on:
     https://mlsys.org/virtual/2022/poster/{posterId}
 
-  Running this code adds 2 elements to a poster page:
+  Running this code adds 3 elements to a poster page:
     <div class="container">
+      <h3>Paper</h3>
       <iframe
         style="border: 0px; width: 100%; height: 100vh;"
         src="//bytez-staging.web.app/read/{publisher}/{posterId}?_c={config}"
