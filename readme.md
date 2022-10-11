@@ -311,13 +311,11 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   }
 
   // Step 2) Choose your config
+  // As an example, let's use Hendrik's version 1.A config
   const configObj = {
     v: 1,
-    // disable notes
     disable: ["notes"],
-    // show author presentations, references, and similar papers at this conference
     related: ["references", "conference"],
-    // set the logo
     logo: "https://mlsys.org/static/core/img/MLSys-logo.svg"
   };
   // save the config as a base64 encoded JSON string. We'll pass config to the iframe
