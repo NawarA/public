@@ -3,16 +3,27 @@
 This readme.md shares how to [install](#install) a paper onto a poster page and how to customize the paper experience, including how to [disable](#insdisableins) modules and select [related content](#insrelatedins).
 
 ## The iframe pattern
-Loading an article
-http://bytez.com/read/{conference}/{posterId}
-For example
-http://bytez.com/read/neurips/56242
 
-To insert an article into an iframe add the `_c` parameter like this
-http://bytez.com/read/{conference}/{posterId}?_c={config_options}
-For example
-http://bytez.com/read/neurips/56242?_c=eyJ2IjoxfQ==
+The URL pattern to load a paper into an iframe is:
 
+- https://bytez.com/read/{conference}/{posterId}?_c={config_options}
+
+Here are three examples:
+
+- https://bytez.com/read/neurips/56242?_c=eyJ2IjoxfQ==
+- https://bytez.com/read/neurips/54165?_c=eyJ2IjoxfQ==
+- https://bytez.com/read/neurips/55018?_c=eyJ2IjoxfQ==
+
+Here are some off the shelf configs you can use:
+
+| Description               | Config                                                              | \_c value                                                                                     | example url                                                                                                                      |
+| ------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Default config            | { v: 1 }                                                            | `_c=eyJ2IjoxfQ==`                                                                             | https://bytez.com/read/neurips/56242?_c=eyJ2IjoxfQ==                                                                             |
+| Config to only show paper | { v: 1, disable: ["related", "notes"] }                             | `_c=eyJ2IjoxLCJkaXNhYmxlIjpbInJlbGF0ZWQiLCJub3RlcyJdfQ==`                                     | https://bytez.com/read/neurips/56242?_c=eyJ2IjoxLCJkaXNhYmxlIjpbInJlbGF0ZWQiLCJub3RlcyJdfQ==                                     |
+| Hendrik v1.A              | { v: 1, disable: ["notes"], related: ["references", "conference"] } | `_c=eyJ2IjoxLCJkaXNhYmxlIjpbIm5vdGVzIl0sInJlbGF0ZWQiOlsicmVmZXJlbmNlcyIsImNvbmZlcmVuY2UiXX0=` | https://bytez.com/read/neurips/56242?_c=eyJ2IjoxLCJkaXNhYmxlIjpbIm5vdGVzIl0sInJlbGF0ZWQiOlsicmVmZXJlbmNlcyIsImNvbmZlcmVuY2UiXX0= |
+| Hendrik v1.B              | { v: 1, related: ["code","references", "conference"] }              | `_c=eyJ2IjoxLCJyZWxhdGVkIjpbImNvZGUiLCJyZWZlcmVuY2VzIiwiY29uZmVyZW5jZSJdfQ==`                 | https://bytez.com/read/neurips/56242?_c=eyJ2IjoxLCJyZWxhdGVkIjpbImNvZGUiLCJyZWZlcmVuY2VzIiwiY29uZmVyZW5jZSJdfQ==                 |
+
+The remainder of this readme.md describes how to customize the config.
 
 ## TOC
 
@@ -31,7 +42,7 @@ Adding a paper to a virtual poster takes 3 steps:
 
 1. Create an iframe
 2. Select a paper
-   - Set the iframe's URL to 
+   - Set the iframe's URL to
    - `//bytez.com/read/{publisher}/{posterId}`
 3. (Optional) Customize the paper using a `_c` parameter
    - `//bytez.com/read/{publisher}/{posterId}?_c={config}`
@@ -55,7 +66,7 @@ To customize/configure a paper, use the `_c` parameter. The `_c` param expects b
   "v": 1,
   // [optional] use the "disable" key to disable modules
   "disable": ["related", "paper", "notes"],
-  // [optional] use the "related" key to select which content to show users
+  // [optional] use the "related" property to filter content
   "related": [
     "references",
     "conference",
@@ -297,7 +308,7 @@ const config = btoa(json);
       <h3>Paper</h3>
       <iframe
         style="border: 0px; width: 100%; height: 100vh;"
-        src="//bytez-staging.web.app/read/{publisher}/{posterId}?_c={config}"
+        src="//bytez.com/read/{publisher}/{posterId}?_c={config}"
       />
     </div>
 */
