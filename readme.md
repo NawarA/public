@@ -40,7 +40,9 @@ To customize/configure a paper, use the `_c` parameter. The `_c` param expects b
 ```json
 {
   "v": 1,
+  // [optional] use the "disable" key to disable modules
   "disable": ["related", "paper", "notes"],
+  // [optional] use the "related" key to select which content to show users
   "related": [
     "references",
     "conference",
