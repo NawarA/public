@@ -8,7 +8,6 @@ This readme.md shares how to [install](#install) a paper onto a poster page and 
 2. [Customize](#customizing)
    - [Config schema](#config-options)
      - [version](#insversionins)
-     - [logo](#inslogoins)
      - [disable modules](#insdisableins)
      - [select related content](#insrelatedins)
    - [Code Snippets / Recipes](#snippets)
@@ -28,7 +27,7 @@ Adding a paper to a virtual poster takes 3 steps:
 
 ![image.png](<https://raw.githubusercontent.com/NawarA/public/main/localhost_3000_read_arxiv_2005.14165%20(3).png>)
 
-### Papers can be customized. For example, below, we added a logo, disabled notes, and have decided to show code, similar papers, and references.
+### Papers can be customized. For example, disable notes and show code, similar papers, and references.
 
 ![image.png](https://github.com/NawarA/public/blob/main/Screenshot%202022-09-27%20105234.png?raw=true)
 
@@ -41,7 +40,6 @@ To customize/configure a paper, use the `_c` parameter. The `_c` param expects b
 ```json
 {
   "v": 1,
-  "logo": "Url",
   "disable": ["related", "paper", "notes"],
   "related": [
     "references",
@@ -62,7 +60,6 @@ Once you choose your config, then JSON.stringify the object and base64 encode it
 ```js
 const json = JSON.stringify({
   v: 1,
-  logo: "Url",
   disable: ["related", "paper", "notes"],
   related: [
     "references",
@@ -97,16 +94,6 @@ iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${config}`;
 ```
 
 The version param can be ignored. It's here in case we want to update the config we're using in the future. Set the value to 1 for now.
-
-### <ins>Logo</ins>
-
-```json
-{
-  "logo": "Url"
-}
-```
-
-Set the logo in the upper left corner. This optional parameter expects a URL to an image or SVG. For example, `https://neurips.cc/static/core/img/NeurIPS-logo.svg` or `https://mlsys.org/static/core/img/MLSys-logo.svg`
 
 ### <ins>Disable</ins>
 
@@ -225,7 +212,6 @@ Users can see Twitter conversational threads discussing the paper
 | Parameter | Description                                     | Default value        | Possible values                                                                                  |
 | --------- | ----------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------ |
 | v         | Config version being used                       | 1                    | 1                                                                                                |
-| logo      | Display a conference logo                       |                      | URL to an image or SVG                                                                           |
 | disable   | Disable the `related`, `paper`, `notes` modules | []                   | ["related","paper", "notes"]                                                                     |
 | related   | Choose content displayed in the related section | everything displayed | ['references','conference', 'code', 'similar', 'citations','datasets','videos','blogs','tweets'] |
 
@@ -315,8 +301,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   const configObj = {
     v: 1,
     disable: ["notes"],
-    related: ["references", "conference"],
-    logo: "https://mlsys.org/static/core/img/MLSys-logo.svg"
+    related: ["references", "conference"]
   };
   // save the config as a base64 encoded JSON string. We'll pass config to the iframe
   const config = btoa(JSON.stringify(configObj));
@@ -328,7 +313,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   iframe.style.width = "100%";
   iframe.style.height = "100vh";
   // set the iframe src to the paper
-  iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${config}`;
+  iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${config}`;
 
   // the iframe is only visible when a paper loads
   const listenForSuccess = ({ data, origin }) => {
