@@ -20,9 +20,9 @@ Adding a paper to a virtual poster takes 3 steps:
 
 1. Create an iframe
 2. Select a paper
-   - Set the iframe's src to `//bytez-staging.web.app/read/{publisher}/{posterId}`
+   - Set the iframe's src to `//bytez.com/read/{publisher}/{posterId}`
 3. (Optional) Customize the paper using a `_c` parameter
-   - `//bytez-staging.web.app/read/{publisher}/{posterId}?_c={config}`
+   - `//bytez.com/read/{publisher}/{posterId}?_c={config}`
 
 ### By default (without customization) papers look like:
 
@@ -83,7 +83,7 @@ const config = btoa(json);
 Set `_c` param in the iframe src, equal to the base64 encoded JSON string.
 
 ```js
-iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${config}`;
+iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${config}`;
 ```
 
 ## Here's what each config parameter does:
