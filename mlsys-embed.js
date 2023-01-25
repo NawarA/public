@@ -28,7 +28,6 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
     v: 1,
     disable: ["notes"],
     related: ["references", "conference"],
-    logo: "https://mlsys.org/static/core/img/MLSys-logo.svg"
   };
   // save the config as a base64 encoded JSON string. We'll pass config to the iframe
   const config = btoa(JSON.stringify(configObj));
@@ -40,7 +39,7 @@ function addPaperToPosterPage(publisher = "mlsys", posterId) {
   iframe.style.width = "100%";
   iframe.style.height = "100vh";
   // set the iframe src to the paper
-  iframe.src = `https://bytez-staging.web.app/read/${publisher}/${posterId}?_c=${config}`;
+  iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${config}`;
 
   // the iframe is only visible when a paper loads
   const listenForSuccess = ({ data, origin }) => {
