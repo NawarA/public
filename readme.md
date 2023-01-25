@@ -2,6 +2,18 @@
 
 This readme.md shares how to [install](#install) a paper onto a poster page and how to customize the paper experience, including how to [disable](#insdisableins) modules and select [related content](#insrelatedins).
 
+## The iframe pattern
+Loading an article
+http://bytez.com/read/{conference}/{posterId}
+For example
+http://bytez.com/read/neurips/56242
+
+To insert an article into an iframe add the `_c` parameter like this
+http://bytez.com/read/{conference}/{posterId}?_c={config_options}
+For example
+http://bytez.com/read/neurips/56242?_c=eyJ2IjoxfQ==
+
+
 ## TOC
 
 1. [Install](#install)
@@ -19,7 +31,8 @@ Adding a paper to a virtual poster takes 3 steps:
 
 1. Create an iframe
 2. Select a paper
-   - Set the iframe's src to `//bytez.com/read/{publisher}/{posterId}`
+   - Set the iframe's URL to 
+   - `//bytez.com/read/{publisher}/{posterId}`
 3. (Optional) Customize the paper using a `_c` parameter
    - `//bytez.com/read/{publisher}/{posterId}?_c={config}`
 
