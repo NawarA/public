@@ -50,11 +50,8 @@ function addPaperToPosterPage(options = {}) {
 
   // Sets a configuration object for the paper view.
   if (config === undefined) {
-    config = {
-      v: 1,
-      disable: ["notes"],
-      related: ["references", "conference"]
-    };
+    // by default, use Hendrik's V1.B, which enables code, refs, and recommended conference papers
+    config = { v: 1, related: ["code", "references", "conference"] };
   }
 
   // Encodes the configuration object as a base64 string to pass it to the iframe.
