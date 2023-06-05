@@ -12,7 +12,7 @@ Finally, it creates a container div, appends the iframe to it, and appends the d
 */
 
 function addPaperToPosterPage(options = {}) {
-  const { publisher, posterId, config } = options;
+  let { publisher, posterId, config } = options;
   const iframeId = "bytez-accessible-paper";
   // only load the iframe once per page
   if (document.getElementById(iframeId)) {
@@ -65,7 +65,7 @@ function addPaperToPosterPage(options = {}) {
   iframe.id = iframeId;
   iframe.style.border = 0;
   iframe.style.width = "100%";
-  iframe.style.height = "100vh";
+  iframe.style.height = "calc( 100vh - 70px )";
   iframe.style.paddingRight = "16px";
   iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${configParam}`;
 
