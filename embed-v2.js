@@ -11,7 +11,8 @@ It sets a configuration for the paper view, then creates an iframe and sets its 
 Finally, it creates a container div, appends the iframe to it, and appends the div to the document body.
 */
 
-function addPaperToPosterPage(publisher, posterId, configObj) {
+function addPaperToPosterPage(options = {}) {
+  const { publisher, posterId, config } = options;
   const iframeId = "bytez-accessible-paper";
   // only load the iframe once per page
   if (document.getElementById(iframeId)) {
@@ -48,14 +49,16 @@ function addPaperToPosterPage(publisher, posterId, configObj) {
   }
 
   // Sets a configuration object for the paper view.
-  configObj = configObj || {
-    v: 1,
-    disable: ["notes"],
-    related: ["references", "conference"]
-  };
+  if (config === undefined) {
+    config = {
+      v: 1,
+      disable: ["notes"],
+      related: ["references", "conference"]
+    };
+  }
 
   // Encodes the configuration object as a base64 string to pass it to the iframe.
-  const config = encodeURIComponent(btoa(JSON.stringify(configObj)));
+  const configParam = encodeURIComponent(btoa(JSON.stringify(config)));
 
   // Creates an iframe and sets its source to the paper's URL.
   const iframe = document.createElement("iframe");
@@ -64,7 +67,7 @@ function addPaperToPosterPage(publisher, posterId, configObj) {
   iframe.style.width = "100%";
   iframe.style.height = "100vh";
   iframe.style.paddingRight = "16px";
-  iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${config}`;
+  iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${configParam}`;
 
   // Sets up an event listener to wait for a message from the iframe indicating that the paper has loaded successfully.
   const listenForSuccess = ({ data, origin }) => {
