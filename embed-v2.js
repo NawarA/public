@@ -44,8 +44,21 @@ function addPaperToPosterPage(options = {}) {
   }
 
   if (posterId === undefined) {
+    const { pathname } = location;
+    const notAVirtualPoster =
+      /virtual\/(\d+)\/poster\/(\d+)/.test(pathname) === false;
+    const notAuthorized = [
+      ...document.body.querySelectorAll(".container")
+    ].some(div =>
+      div.textContent.toLowerCase().includes("registration required")
+    );
+
+    if (notAVirtualPoster || notAuthorized) {
+      // the script only runs virtual poster pages and authorized pages
+      return;
+    }
     // If no posterId has been provided, it attempts to extract the posterId from the URL.
-    posterId = location.pathname.slice(location.pathname.lastIndexOf("/") + 1);
+    posterId = pathname.slice(pathname.lastIndexOf("/") + 1);
   }
 
   // Sets a configuration object for the paper view.
@@ -64,6 +77,7 @@ function addPaperToPosterPage(options = {}) {
   iframe.style.width = "100%";
   iframe.style.height = "calc( 100vh - 70px )";
   iframe.style.paddingRight = "16px";
+  // iframe.src = `http://localhost:3000/read/${publisher}/${posterId}?_c=${configParam}`;
   iframe.src = `https://bytez.com/read/${publisher}/${posterId}?_c=${configParam}`;
 
   // Sets up an event listener to wait for a message from the iframe indicating that the paper has loaded successfully.
