@@ -61,6 +61,10 @@ function addPaperToPosterPage(options = {}) {
     posterId = pathname.slice(pathname.lastIndexOf("/") + 1);
   }
 
+  if (publisher==='nips') {
+    publisher = 'neurips'
+  }
+    
   // Sets a configuration object for the paper view.
   if (config === undefined) {
     // by default, use Hendrik's V1.B, which enables code, refs, and recommended conference papers
